@@ -1,0 +1,119 @@
+Server [localhost]:
+Database [postgres]:
+Port [5432]:
+Username [postgres]:
+Password for user postgres:
+
+psql (16.4)
+WARNING: Console code page (850) differs from Windows code page (1252)
+         8-bit characters might not work correctly. See psql reference
+         page "Notes for Windows users" for details.
+Type "help" for help.
+
+postgres=# CREATE TABLE cars (
+postgres(# brand VARCHAR(255),
+postgres(# model VARCHAR(255),
+postgres(# year int
+postgres(# );
+ERROR:  relation "cars" already exists
+postgres=# CREATE TABLE bikes (
+postgres(# brand VARCHAR(255),
+postgres(# model VARCHAR(255),
+postgres(# year INT
+postgres(# );
+CREATE TABLE
+postgres=# CREATE TABLE trucks (
+postgres(# brand VARCHAR(255),
+postgres(# model VARCHAR(255),
+postgres(# year INT
+postgres(# );
+CREATE TABLE
+postgres=# SELECT * FROM cars;
+ brand | model | year
+-------+-------+------
+(0 rows)
+
+
+postgres=# INSERT INTO trucks (brand, model, year)
+postgres-# VALUES ('Tata', 'T50', '2016')
+postgres-# INSERT INTO trucks (brand, model, year)
+postgres-# VALUES ('Tata', 'T30', '2016');
+ERROR:  syntax error at or near "INSERT"
+LINE 3: INSERT INTO trucks (brand, model, year)
+        ^
+postgres=# INSERT INTO trucks (brand, model, year)
+postgres-#
+postgres-# VALUES ('Tata', 'T30', '2016');
+INSERT 0 1
+postgres=# SELECT * FROM cars;
+ brand | model | year
+-------+-------+------
+(0 rows)
+
+
+postgres=# SELECT * FROM trucks;
+ brand | model | year
+-------+-------+------
+ Tata  | T30   | 2016
+(1 row)
+
+
+postgres=# I
+postgres-# INSERT INTO trucks (brand, model, year)
+postgres-# VALUES ('Scania''S40''2017');
+ERROR:  syntax error at or near "I"
+LINE 1: I
+        ^
+postgres=# INSERT INTO trucks (brand, model, year)
+postgres-# VALUES ('Scania''S40''2017');
+ERROR:  INSERT has more target columns than expressions
+LINE 1: INSERT INTO trucks (brand, model, year)
+                                   ^
+postgres=# INSERT INTO trucks(brand, model, year)
+postgres-# VALUES ('Scania', 'S40', '2017');
+INSERT 0 1
+postgres=# INSERT INTO cars (brand, model, year)
+postgres-# VALUES ('Nissan', 'X-Trail', '2017');
+INSERT 0 1
+postgres=# INSERT INTO cars (brand, model, year)
+postgres-# VALUES ('Toyota', 'Fortuner' ,'2019');
+INSERT 0 1
+postgres=# INSERT INTO bikes (brand, model, year)
+postgres-# VALUES ('Shimano', 'Touring', '2019');
+INSERT 0 1
+postgres=# INSERT INTO bikes (brand, model, year)
+postgres-# VALUES ('Kawasaki', 'Ninja', '2017');
+INSERT 0 1
+postgres=# SELECT * FROM bikes;
+  brand   |  model  | year
+----------+---------+------
+ Shimano  | Touring | 2019
+ Kawasaki | Ninja   | 2017
+(2 rows)
+
+
+postgres=# SELECT * FROM trucks:
+postgres-# ;
+ERROR:  syntax error at or near ":"
+LINE 1: SELECT * FROM trucks:
+                            ^
+postgres=# SELECT * FROM trucks;
+ brand  | model | year
+--------+-------+------
+ Tata   | T30   | 2016
+ Scania | S40   | 2017
+(2 rows)
+
+
+postgres=#
+postgres=# UPDATE trucks
+postgres-# SET model = 'T500'
+postgres-# WHERE brand = 'Tata';
+UPDATE 1
+postgres=# ALTER TABLE bikes
+postgres-# ADD color VARCHAR(255);
+ALTER TABLE
+postgres=# DELETE FROM cars
+postgres-# WHERE brand = 'Toyota';
+DELETE 1
+postgres=#
